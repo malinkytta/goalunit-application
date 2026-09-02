@@ -1,0 +1,57 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.club-card {
+  @include glass-panel;
+  min-height: 100px;
+  border: 1px solid transparent;
+  border-radius: $radius;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+
+  &:hover {
+    background: rgba($panel, 0.7);
+  }
+
+  &__logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name {
+    font-family: $font-base;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__stats {
+    color: $muted;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  &__chevron {
+    color: $muted;
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  &:hover &__chevron {
+    color: $gold;
+  }
+}

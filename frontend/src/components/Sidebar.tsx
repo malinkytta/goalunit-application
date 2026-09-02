@@ -3,7 +3,7 @@ const inactiveNavItems = ["Home", "Transfers", "Settings"];
 const Sidebar = ({ onGoHome }: { onGoHome: () => void }) => {
   return (
     <aside className="sidebar">
-      <div className="sidebar__brand">Goalunit Explorer</div>
+      <h1 className="sidebar__brand">Goalunit Explorer</h1>
       <nav className="sidebar__nav">
         <div className="sidebar__item sidebar__item--active" onClick={onGoHome}>
           Clubs
