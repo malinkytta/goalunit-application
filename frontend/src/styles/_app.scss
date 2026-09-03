@@ -7,4 +7,19 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 16px;
   }
+
+  &__back {
+    background: none;
+    border: none;
+    color: $muted;
+    font-family: $font-base;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 16px;
+
+    &:hover {
+      color: $gold;
+    }
+  }
 }

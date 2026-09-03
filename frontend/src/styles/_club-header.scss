@@ -1,0 +1,63 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.club-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  @include glass-panel;
+  border: 1px solid $line;
+  border-radius: $radius;
+  padding: 24px;
+  margin-bottom: 24px;
+
+  &__identity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  &__name {
+    font-family: $font-base;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: $muted;
+    font-size: 13px;
+    margin: 4px 0 0;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__stat-label {
+    font-size: 11px;
+    color: $muted;
+  }
+
+  &__stat-value {
+    font-family: $font-base;
+    font-size: 18px;
+    font-weight: 600;
+    color: $gold;
+  }
+}

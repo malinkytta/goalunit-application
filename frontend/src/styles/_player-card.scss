@@ -1,0 +1,38 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.player-card {
+  @include glass-panel;
+  border: 1px solid $line;
+  border-radius: $radius;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: $gold;
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__club {
+    color: $muted;
+    font-size: 12px;
+    margin: 4px 0 8px;
+  }
+
+  &__badge {
+    display: inline-block;
+    background: rgba(180, 71, 42, 0.15);
+    border: 1px solid $rust;
+    color: $rust;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+}
