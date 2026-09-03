@@ -1,21 +1,34 @@
 import { useState } from "react";
+
+import clubsData from "./data/club_summary_data.json";
+import playersData from "./data/all_players_data.json";
+import playerStatsData from "./data/player_stats_data.json";
+
 import ClubCard from "./components/ClubCard";
+import ClubHeader from "./components/ClubHeader";
+import PlayerCard from "./components/PlayerCard";
 import Sidebar from "./components/Sidebar";
 import StatsBar from "./components/StatsBar";
-import playersData from "./data/all_players_data.json";
-import clubsData from "./data/club_summary_data.json";
+
 import type { Club } from "./types/Club";
-import ClubHeader from "./components/ClubHeader";
+import type { Player } from "./types/Player";
+import type { PlayerStats } from "./types/PlayerStats";
 
 const App = () => {
   const [selectedClub, setSelectedClub] = useState<Club | null>(null);
   const clubs = clubsData as Club[];
+  const players = playersData as Player[];
+  const playerStats = playerStatsData as PlayerStats[];
 
   const handleGoHome = () => {
     setSelectedClub(null);
   };
 
   if (selectedClub) {
+    const clubPlayers = players.filter(
+      (player) => player.clubName === selectedClub.clubName,
+    );
+
     return (
       <div className="layout">
         <Sidebar onGoHome={handleGoHome} />
@@ -24,6 +37,21 @@ const App = () => {
             ← All clubs
           </button>
           <ClubHeader club={selectedClub} />
+          <div className="app__grid">
+            {clubPlayers.map((player) => {
+              const stats = playerStats.find(
+                (stats) => stats.playerId === player.playerId,
+              );
+              return (
+                <PlayerCard
+                  key={player.playerId}
+                  player={player}
+                  position={stats?.playerPosition}
+                  onClick={() => {}}
+                />
+              );
+            })}
+          </div>
         </main>
       </div>
     );

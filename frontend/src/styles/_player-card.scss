@@ -3,36 +3,60 @@
 
 .player-card {
   @include glass-panel;
-  border: 1px solid $line;
+  min-height: 100px;
+  border: 1px solid transparent;
   border-radius: $radius;
-  padding: 16px 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: background 0.15s;
 
   &:hover {
-    border-color: $gold;
+    background: rgba($panel, 0.9);
+  }
+
+  &__image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
   }
 
   &__name {
-    font-family: $font-display;
-    font-size: 15px;
+    font-family: $font-base;
+    font-size: 16px;
     font-weight: 600;
     margin: 0;
   }
 
-  &__club {
+  &__position {
     color: $muted;
     font-size: 12px;
-    margin: 4px 0 8px;
+    margin: 0;
   }
 
-  &__badge {
-    display: inline-block;
-    background: rgba(180, 71, 42, 0.15);
-    border: 1px solid $rust;
-    color: $rust;
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 999px;
+  &__chevron {
+    color: $muted;
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    transition:
+      color 0.15s,
+      transform 0.15s;
+  }
+
+  &:hover &__chevron {
+    color: $gold;
+    transform: scale(1.15);
   }
 }
