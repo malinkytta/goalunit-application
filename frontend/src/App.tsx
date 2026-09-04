@@ -13,9 +13,11 @@ import StatsBar from "./components/StatsBar";
 import type { Club } from "./types/Club";
 import type { Player } from "./types/Player";
 import type { PlayerStats } from "./types/PlayerStats";
+import PlayerDetail from "./components/PlayerDetail";
 
 const App = () => {
   const [selectedClub, setSelectedClub] = useState<Club | null>(null);
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const clubs = clubsData as Club[];
   const players = playersData as Player[];
   const playerStats = playerStatsData as PlayerStats[];
@@ -23,6 +25,29 @@ const App = () => {
   const handleGoHome = () => {
     setSelectedClub(null);
   };
+
+  if (selectedPlayer) {
+    const player = players.find(
+      (player) => player.playerId === selectedPlayer.playerId,
+    );
+    const stats = playerStats.find(
+      (stats) => stats.playerId === selectedPlayer.playerId,
+    );
+    if (!player) return null;
+
+    return (
+      <div className="layout">
+        <Sidebar onGoHome={handleGoHome} />
+        <main className="layout__main">
+          <PlayerDetail
+            player={player}
+            stats={stats}
+            onBack={() => setSelectedPlayer(null)}
+          />
+        </main>
+      </div>
+    );
+  }
 
   if (selectedClub) {
     const clubPlayers = players.filter(
@@ -47,7 +72,7 @@ const App = () => {
                   key={player.playerId}
                   player={player}
                   position={stats?.playerPosition}
-                  onClick={() => {}}
+                  onClick={() => setSelectedPlayer(player)}
                 />
               );
             })}
