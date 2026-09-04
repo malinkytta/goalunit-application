@@ -1,4 +1,4 @@
-const inactiveNavItems = ["Home", "Transfers", "Settings"];
+const inactiveNavItems = ["Transfers", "Settings"];
 
 const Sidebar = ({ onGoHome }: { onGoHome: () => void }) => {
   return (
