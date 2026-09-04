@@ -1,0 +1,144 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.player-detail {
+  &__banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    background: linear-gradient(135deg, $panel-raised, $panel);
+    border: 1px solid $line;
+    border-radius: $radius;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+
+  &__identity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__image {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $gold;
+  }
+
+  &__name {
+    font-family: $font-base;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 2px;
+    color: $chalk;
+  }
+
+  &__position {
+    color: $gold;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 2px 0 0;
+  }
+
+  &__banner-meta {
+    display: flex;
+    gap: 28px;
+  }
+
+  &__banner-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__banner-value {
+    font-family: $font-base;
+    font-size: 17px;
+    font-weight: 600;
+    color: $chalk;
+  }
+
+  &__hero-value {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 28px;
+    border-left: 1px solid $line;
+  }
+
+  &__hero-number {
+    font-family: $font-base;
+    font-size: 44px;
+    font-weight: 700;
+    color: $gold;
+    line-height: 1;
+
+    small {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  &__panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  &__panel {
+    @include glass-panel;
+    border: 1px solid $line;
+    border-radius: $radius;
+    padding: 24px;
+  }
+
+  &__panel-title {
+    display: block;
+    color: $chalk;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  &__value-compare,
+  &__facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  &__fact {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+
+  &__fact-label {
+    font-size: 11px;
+    color: $muted;
+    letter-spacing: 0.04em;
+  }
+
+  &__fact-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: $chalk;
+  }
+
+  &__delta-badge {
+    font-size: 15px;
+    font-weight: 700;
+
+    &--up {
+      color: $green;
+    }
+
+    &--down {
+      color: $rust;
+    }
+  }
+}
