@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+# Goalunit Premier League Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En interaktiv plattform för att utforska Premier League 2024/25 - spelardata, klubbvärden och prestationer.
 
-Currently, two official plugins are available:
+**Live demo:** https://goalunit-application.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+_LIA-ansökan för Goalunit_
 
-## React Compiler
+## Vad gör appen?
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Se alla klubbar i ligatabellen med ranking och poäng
+- Klicka på en klubb för att se spelarnas marknadsvärden
+- Klicka på en spelare för att se: värde, kontraktstid, stats (mål/assists), ålder, längd, nationalitet
+- Se hur spelarnas värde förändrats från förra säsongen
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Projektstruktur
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+goalunit-application/
+├── analysis/
+│   └── data_pipeline.ipynb
+├── data/
+│   ├── clubs.csv
+│   ├── events.csv
+│   ├── player_club_mapping.csv
+│   └── players.csv
+├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── LeagueTable.tsx
+│       │   ├── ClubHeader.tsx
+│       │   ├── PlayerCard.tsx
+│       │   ├── PlayerDetail.tsx
+│       │   └── ...
+│       ├── data/ (JSON-filer genererade från pipeline)
+│       ├── types/
+│       ├── utils/
+│       ├── styles/
+│       ├── assets/
+│       └── App.tsx
+└── package.json
 ```
+
+## 🔧 Tech Stack
+
+**Data Pipeline:** Python, Pandas, Jupyter
+
+**Frontend:** React, TypeScript, SCSS, Vite
+
+**Hosting:** Vercel
+
+## 🚀 Installation
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Körs på `http://localhost:5173`
+
+## 💾 Data
+
+Använder dataset från Goalunit (3 CSV-filer: spelare, klubbar, matcher). Data är processad genom en Python pipeline som normaliserar, städar och exporterar som JSON för frontend.
+
+Dataset täcker en säsong, vilket begränsade vissa features (transferhistorik, osv). Fokuserade på en solid och komplett user flow istället.
