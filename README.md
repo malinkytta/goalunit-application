@@ -1,40 +1,57 @@
-# Goalunit Application
+# Goalunit Premier League Explorer
 
-A small project built on Goalunit's own data (player valuations and club data for the Premier League, 2023/24 & 2024/25), made for a LIA/internship application.
+En interaktiv plattform för att utforska Premier League 2024/25 - spelardata, klubbvärden och prestationer.
 
-**Live demo:** [goalunit-application.vercel.app](https://goalunit-application.vercel.app/)
+**Live demo:** https://goalunit-application.vercel.app/
 
-## What it does
+_LIA-ansökan för Goalunit_
 
-Browse Premier League clubs, see squad size and total squad value, and explore each player's estimated value, contract status, and basic profile.
+## Vad gör appen?
 
-## Structure
+- Se alla klubbar i ligatabellen med ranking och poäng
+- Klicka på en klubb för att se spelarnas marknadsvärden
+- Klicka på en spelare för att se: värde, kontraktstid, stats (mål/assists), ålder, längd, nationalitet
+- Se hur spelarnas värde förändrats från förra säsongen
+
+## 📁 Projektstruktur
 
 ```
 goalunit-application/
-├── analysis/          Jupyter notebooks — data exploration and the pipeline that generates the JSON files below
-├── data/              Local CSV files (not committed, see .gitignore)
-└── frontend/          React + TypeScript app (Vite)
+├── analysis/
+│   └── data_pipeline.ipynb
+├── data/
+│   ├── clubs.csv
+│   ├── events.csv
+│   ├── player_club_mapping.csv
+│   └── players.csv
+├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── LeagueTable.tsx
+│       │   ├── ClubHeader.tsx
+│       │   ├── PlayerCard.tsx
+│       │   ├── PlayerDetail.tsx
+│       │   └── ...
+│       ├── data/ (JSON-filer genererade från pipeline)
+│       ├── types/
+│       ├── utils/
+│       ├── styles/
+│       ├── assets/
+│       └── App.tsx
+└── package.json
 ```
 
-## Tech stack
+## 🔧 Tech Stack
 
-- **Data pipeline:** Python, pandas, Jupyter
-- **Frontend:** React, TypeScript, SCSS, Vite
-- **Hosting:** Vercel
+**Data Pipeline:** Python, Pandas, Jupyter
 
-## Running it locally
+**Frontend:** React, TypeScript, SCSS, Vite
 
-**Data pipeline** (only needed if you want to regenerate the JSON files):
+**Hosting:** Vercel
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install pandas numpy jupyter
-jupyter notebook analysis/data_pipeline.ipynb
-```
+## 🚀 Installation
 
-**Frontend:**
+### Frontend
 
 ```bash
 cd frontend
@@ -42,7 +59,10 @@ npm install
 npm run dev
 ```
 
-## Notes
+Körs på `http://localhost:5173`
 
-- The dataset only covers one season of match data, so some features (like a full transfer-history view) weren't possible to build honestly with what's available.
-- A "sell now" signal (flagging players with high value and little contract time left) was explored but left out to keep the scope focused on a complete, polished flow instead.
+## 💾 Data
+
+Använder dataset från Goalunit (3 CSV-filer: spelare, klubbar, matcher). Data är processad genom en Python pipeline som normaliserar, städar och exporterar som JSON för frontend.
+
+Dataset täcker en säsong, vilket begränsade vissa features (transferhistorik, osv). Fokuserade på en solid och komplett user flow istället.
